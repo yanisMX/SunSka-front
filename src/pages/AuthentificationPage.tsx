@@ -1,4 +1,3 @@
-import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -13,7 +12,7 @@ import {
   FormMessage,
 } from "../components/ui/form"
 import { Input } from "../components/ui/input"
-import Header from "../components/Header"
+import HeaderAdmin from "../components/HeaderAdmin.tsx"
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -39,7 +38,7 @@ export default function AuthentificationPage() {
 
   return (
     <>
-      <Header />
+      <HeaderAdmin />
       <div className="flex justify-center items-center min-h-80 m-12 ">
         <div className="border p-12 shadow-lg rounded-md w-full max-w-md">
           <Form {...form}>

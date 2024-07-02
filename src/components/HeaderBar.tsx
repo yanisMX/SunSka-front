@@ -1,4 +1,3 @@
-import React from 'react';
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import {
@@ -9,7 +8,7 @@ import {
 } from "./ui/dropdown-menu";
 import { useTheme } from "./theme-provider";
 
-const Header = () => {
+const HeaderBar = () => {
   const { setTheme } = useTheme();
   return (
     <div className="navbar bg-base-100 mt-2 flex items-center justify-between px-4 mb-2">
@@ -42,4 +41,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderBar;
