@@ -32,7 +32,7 @@ export default function AuthentificationPage() {
     },
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = (data : {username : string, password : string}) => {
     console.log(data)
   }
 

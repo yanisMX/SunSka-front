@@ -12,8 +12,8 @@ const HeaderAdmin = () => {
   const { setTheme } = useTheme();
   return (
     <div className="navbar bg-base-100 mt-2 flex items-center justify-between px-4 mb-2">
-      <div className="flex items-center">
-        <h1>SunSka</h1>      
+      <div className="flex">
+        <h1>Magasin</h1>
       </div>
       <div className="flex-none">
         <DropdownMenu>
