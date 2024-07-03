@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/ui/card';
 import { Button } from '../components/ui/button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const ProductCard = ({ name, quantity, status } : {name: string, quantity : number, status: string}) => {
     const [count, setCount] = useState<number>(quantity);
@@ -36,7 +38,10 @@ const ProductCard = ({ name, quantity, status } : {name: string, quantity : numb
     return (
         <Card className="mb-4 mt-8">
             <CardHeader>
-                <p className={`inline-block rounded-full px-3 py-1 text-sm font-semibold ${badgeClass}`}>{status}</p>
+                <p className={`inline-block rounded-full px-3 py-1 text-sm font-semibold ${badgeClass}`}>
+                    {status}
+                    {status === 'Livraison en cours' && <FontAwesomeIcon icon="truck" className="ml-2" />}
+                </p>
                 <CardTitle>{name}</CardTitle>
             </CardHeader>
             <CardContent className="flex justify-center items-center">

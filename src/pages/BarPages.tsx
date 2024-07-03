@@ -32,7 +32,7 @@ const BarPages = () => {
         <>
             <HeaderAdmin />
             <div className="text-center">
-                <p className="text-3xl mb-4">Bar 1</p>
+                <p className="text-3xl mb-4">Bar 1<i className="fa-solid fa-truck"></i></p>
                 <div className="mb-4">
                     {products.map((product, index) => (
                         <ProductCard key={index} {...product} />

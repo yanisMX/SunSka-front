@@ -6,6 +6,9 @@ import {ThemeProvider} from './components/theme-provider';
 import DashboardPage from "./pages/DashboardPage.tsx";
 import MagasinPage from "./pages/MagasinPage.tsx";
 import StocksBarPage from "./pages/StocksBarPage.tsx";
+import './fontawesome';
+
+
 
 function App() {
     return (
