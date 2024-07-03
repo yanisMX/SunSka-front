@@ -6,11 +6,11 @@ export function SonnerDemo() {
         <Button
             variant="outline"
             onClick={() =>
-                toast("Event has been created", {
-                    description: "Sunday, December 03, 2023 at 9:00 AM",
+                toast("Succès", {
+                    description: "Le bar a bien été créé",
                     action: {
-                        label: "Undo",
-                        onClick: () => console.log("Undo"),
+                        label: "Supprimer",
+                        onClick: () => console.log("Supprimer"),
                     },
                 })
             }

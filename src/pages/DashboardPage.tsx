@@ -5,8 +5,11 @@ import BarSettingsView from "../components/BarSettingsView.tsx";
 import {SonnerDemo} from "../components/SonnerDemo.tsx";
 
 
+
 const DashboardPage = () => {
     const [activeTab, setActiveTab] = useState<string>('Bar');
+
+
 
     return(
         <div className="min-h-screen p-4">
