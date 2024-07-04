@@ -1,8 +1,8 @@
 import HeaderAdmin from "../components/HeaderAdmin.tsx";
 import {useState} from "react";
-import LivraisonView from "../components/LivraisonView.tsx";
 import BarSettingsView from "../components/BarSettingsView.tsx";
-import {SonnerDemo} from "../components/SonnerDemo.tsx";
+import ProductSettingsView from "../components/ProductSettingsView.tsx";
+
 
 
 
@@ -28,11 +28,10 @@ const DashboardPage = () => {
                     >
                         Produits
                     </button>
-                    <SonnerDemo/>
                 </div>
 
                 <div className="mt-4">
-                    {activeTab === 'Bar' ? <BarSettingsView /> : <LivraisonView />}
+                    {activeTab === 'Bar' ? <BarSettingsView /> : <ProductSettingsView />}
                 </div>
             </div>
         </div>

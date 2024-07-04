@@ -1,3 +1,6 @@
+import {Button} from "./ui/button.tsx";
+
+
 const livraisons = [
     { name: 'Jack Daniels 75cl', bar: 'Bar 1', status: 'red' },
     { name: 'Cristalline 1L', bar: 'Bar 3', status: 'red' },
@@ -8,6 +11,7 @@ const livraisons = [
 const LivraisonView = () => {
     return (
         <div>
+
             {livraisons.map((livraison, index) => (
                 <div key={index} className="p-4 rounded-lg shadow-md mb-4">
                     <div className="flex justify-between items-center">

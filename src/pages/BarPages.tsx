@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import HeaderAdmin from '../components/HeaderAdmin';
 import ProductCard from '../components/ProductCard';
 import { Alert, AlertTitle, AlertDescription } from '../components/ui/alert';
-import { Terminal } from 'lucide-react'; // Assurez-vous que cet import est correct
+import { Terminal } from 'lucide-react';
+import HeaderBar from "../components/HeaderBar.tsx"; // Assurez-vous que cet import est correct
 
 const products = [
     { name: 'Ricard 1L', quantity: 10, status: 'Livraison en cours' },
@@ -30,7 +31,7 @@ const BarPages = () => {
 
     return (
         <>
-            <HeaderAdmin />
+            <HeaderBar barName={"test"} />
             <div className="text-center">
                 <p className="text-3xl mb-4">Bar 1<i className="fa-solid fa-truck"></i></p>
                 <div className="mb-4">

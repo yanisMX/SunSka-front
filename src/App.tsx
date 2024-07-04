@@ -5,8 +5,8 @@ import BarPages from "./pages/BarPages.tsx";
 import {ThemeProvider} from './components/theme-provider';
 import DashboardPage from "./pages/DashboardPage.tsx";
 import MagasinPage from "./pages/MagasinPage.tsx";
-import StocksBarPage from "./pages/StocksBarPage.tsx";
 import './fontawesome';
+import BarSettingsPage from "./pages/BarSettingsPage.tsx";
 
 
 
@@ -18,7 +18,7 @@ function App() {
                 <Route path="/dashboard" element={<DashboardPage/>}/>
                 <Route path="/bar" element={<BarPages/>}/>
                 <Route path="/magasin" element={<MagasinPage/>}/>
-                <Route path={"/stocks/:id"} element={<StocksBarPage/>}/>
+                <Route path="/barsettings" element={<BarSettingsPage/>}/>
             </Routes>
         </ThemeProvider>
     );

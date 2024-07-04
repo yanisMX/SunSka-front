@@ -8,12 +8,14 @@ import {
 } from "./ui/dropdown-menu";
 import { useTheme } from "./theme-provider";
 
-const HeaderBar = () => {
+const HeaderBar = ({barName} : {barName : string}) => {
   const { setTheme } = useTheme();
   return (
     <div className="navbar bg-base-100 mt-2 flex items-center justify-between px-4 mb-2">
       <div className="flex items-center">
-        <h1>SunSka</h1>      
+        <h1>SunSka</h1>
+        <span className="mx-2">/</span>
+        <p>{barName}</p>
       </div>
       <div className="flex-none">
         <DropdownMenu>
