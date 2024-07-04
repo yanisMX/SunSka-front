@@ -1,91 +1,109 @@
 import HeaderBar from "../components/HeaderBar.tsx";
-import {Button} from "../components/ui/button.tsx";
+import { Button } from "../components/ui/button.tsx";
 import Modal from "../components/Modal.tsx";
-import {Input} from "../components/ui/input.tsx";
-import {useState} from "react";
-import {toast} from "sonner";
-import {Badge} from "../components/ui/badge.tsx";
-import {Link} from "react-router-dom";
+import { Input } from "../components/ui/input.tsx";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Badge } from "../components/ui/badge.tsx";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "../components/ui/select";
+
 
 const BarProductPage = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
-    const [barName, setBarName] = useState<string>("");
-    const [barProducts, setBarProducts] = useState<number>(0);
-    const [bars, setBars] = useState([
-        {name: 'Bar 1', produits: 3, id: 1},
-        {name: 'Bar 2', produits: 3, id: 2},
-        {name: 'Bar 3', produits: 3, id: 3},
-        {name: 'Bar 4', produits: 3, id: 4},
+    const [selectedProduct, setSelectedProduct] = useState<string>("");
+    const [productSeuil, setProductSeuil] = useState<number | undefined>(undefined);
+    const [productsBar, setProductsBar] = useState([
+        { name: 'Ricard 1L', quantity: 10, status: '', seuil: 5 },
+        { name: 'Coca-Cola 1L', quantity: 100, status: '', seuil: 50 },
+        { name: 'Jack Fire 70cl', quantity: 50, status: '', seuil: 20 },
+        { name: 'Bière 50cl', quantity: 120, status: '', seuil: 100 },
     ]);
 
-
-    const handleAddBar = () => {
-        if (barName === "") {
+    const handleAddProduct = () => {
+        if (selectedProduct === "" || productSeuil === undefined) {
             toast.error("Erreur", {
-                description: "Veuillez saisir un nom de bar",
+                description: "Veuillez sélectionner un produit et définir un seuil",
             });
         } else {
-            const newBar = {name: barName, produits: barProducts, id: bars.length + 1};
-            setBars([...bars, newBar]);
+            const newProduct = { name: selectedProduct, quantity: 0, status: '', seuil: productSeuil };
+            setProductsBar([...productsBar, newProduct]);
             setShowModal(false);
-            setBarName("");
-            setBarProducts(0);
+            setSelectedProduct("");
+            setProductSeuil(undefined);
             toast.success("Succès", {
-                description: "Le bar a bien été créé",
-                action: {
-                    label: "Supprimer",
-                    onClick: () => console.log("Supprimer"),
-                },
+                description: "Le produit a bien été ajouté",
             });
         }
     };
+
+    const handleDeleteProduct = (index: number) => {
+        const newProducts = productsBar.filter((product, i) => i !== index);
+        setProductsBar(newProducts);
+        toast.success("Succès", {
+            description: "Le produit a bien été supprimé",
+        });
+    }
+
     return (
         <>
-        <HeaderBar barName={"test"}/>
-        <div className="p-4 ">
-            <div className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center bg-gray-400">
-                <p className="text-center">Associer un produit</p>
-                <div className="flex items-center space-x-4">
-                    <Button variant="secondary" onClick={() => setShowModal(true)}>+</Button>
+            <HeaderBar barName={"Administration"} />
+            <div className="p-4">
+
+                <div className={"m-3 flex justify-center"}>
+                    <h1 className={"border px-8 rounded pb-3 pt-3"}>Bar à vin VIP</h1>
                 </div>
-            </div>
 
-            <Modal show={showModal} onClose={() => setShowModal(false)}>
-                <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700">Produit</label>
-                    <Input
-                        type="text"
-                        value={barName}
-                        onChange={(e) => setBarName(e.target.value)}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                    />
-                    <label className="block text-sm font-medium text-gray-700">Seuil d'alerte</label>
-                    <Input
-                        type="number"
-
-                    />
-
-                </div>
-                <div className="flex justify-center">
-                    <Button variant="default" onClick={handleAddBar}>Ajouter</Button>
-                </div>
-            </Modal>
-
-            {bars.map((bar, index) => (
-                <div key={index} className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
-                    <div className="text-lg font-semibold">
-                        {bar.name}
-                        <span className="block text-sm font-light">
-                            <Badge variant="secondary">{bar.produits} produits</Badge>
-                        </span>
-                    </div>
+                <div className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center bg-gray-400">
+                    <p className="text-center">Associer un produit</p>
                     <div className="flex items-center space-x-4">
-                        <Link to={"/barsettings"}><Button variant="secondary">Modifier</Button></Link>
+                        <Button variant="secondary" onClick={() => setShowModal(true)}>+</Button>
                     </div>
                 </div>
-            ))}
-        </div>
+
+                <Modal show={showModal} onClose={() => setShowModal(false)}>
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">Produit</label>
+                        <Select onValueChange={setSelectedProduct}>
+                            <SelectTrigger className="w-full">
+                                <button>{selectedProduct ? selectedProduct : "Sélectionner un produit"}</button>
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Ricard 1L">Ricard 1L</SelectItem>
+                                <SelectItem value="Coca-Cola 1L">Coca-Cola 1L</SelectItem>
+                                <SelectItem value="Jack Fire 70cl">Jack Fire 70cl</SelectItem>
+                                <SelectItem value="Bière 50cl">Bière 50cl</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <label className="block text-sm font-medium text-gray-700 mt-4">Seuil d'alerte</label>
+                        <Input
+                            type="number"
+                            value={productSeuil}
+                            onChange={(e) => setProductSeuil(Number(e.target.value))}
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        />
+                    </div>
+                    <div className="flex justify-center">
+                        <Button variant="default" onClick={handleAddProduct}>Ajouter</Button>
+                    </div>
+                </Modal>
+
+                {productsBar.map((product, index) => (
+                    <div key={index} className="p-4 rounded-lg shadow-md mb-4 flex justify-between bg-gray-200">
+                        <div className="flex items-center space-x-4 rounded bg-black p-2">
+                            <button className="text-white font-bold text-xl" onClick={() => handleDeleteProduct(index)}>×</button>
+                            <div className="text-lg font-semibold text-white">
+                                {product.name}
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-4">
+
+                            <Badge variant="outline" className="ml-2">Seuil d'alerte : {product.seuil}</Badge>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </>
     );
-}
+};
+
 export default BarProductPage;

@@ -4,16 +4,13 @@ import BarSettingsView from "../components/BarSettingsView.tsx";
 import ProductSettingsView from "../components/ProductSettingsView.tsx";
 
 
-
-
 const DashboardPage = () => {
     const [activeTab, setActiveTab] = useState<string>('Bar');
 
 
-
-    return(
+    return (
         <div className="min-h-screen p-4">
-            <HeaderAdmin />
+            <HeaderAdmin/>
             <div className="mt-4">
                 <div className="flex justify-center space-x-4">
                     <button
@@ -31,7 +28,7 @@ const DashboardPage = () => {
                 </div>
 
                 <div className="mt-4">
-                    {activeTab === 'Bar' ? <BarSettingsView /> : <ProductSettingsView />}
+                    {activeTab === 'Bar' ? <BarSettingsView/> : <ProductSettingsView/>}
                 </div>
             </div>
         </div>
