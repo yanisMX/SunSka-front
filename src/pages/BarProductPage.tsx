@@ -1,21 +1,22 @@
 import HeaderBar from "../components/HeaderBar.tsx";
-import {Button} from "../components/ui/button.tsx";
+import { Button } from "../components/ui/button.tsx";
 import Modal from "../components/Modal.tsx";
-import {Input} from "../components/ui/input.tsx";
-import {useState} from "react";
-import {toast} from "sonner";
-import {Select, SelectTrigger, SelectContent, SelectItem} from "../components/ui/select";
-
+import { Input } from "../components/ui/input.tsx";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Select, SelectTrigger, SelectContent, SelectItem } from "../components/ui/select";
+import {Link, useParams} from "react-router-dom";
 
 const BarProductPage = () => {
+    const { barName } = useParams<{ barName: string }>();
     const [showModal, setShowModal] = useState<boolean>(false);
     const [selectedProduct, setSelectedProduct] = useState<string>("");
     const [productSeuil, setProductSeuil] = useState<number | undefined>(undefined);
     const [productsBar, setProductsBar] = useState([
-        {name: 'Ricard 1L', quantity: 10, status: '', seuil: 5},
-        {name: 'Coca-Cola 1L', quantity: 100, status: '', seuil: 50},
-        {name: 'Jack Fire 70cl', quantity: 50, status: '', seuil: 20},
-        {name: 'Bière 50cl', quantity: 120, status: '', seuil: 100},
+        { name: 'Ricard 1L', quantity: 10, status: '', seuil: 5 },
+        { name: 'Coca-Cola 1L', quantity: 100, status: '', seuil: 50 },
+        { name: 'Jack Fire 70cl', quantity: 50, status: '', seuil: 20 },
+        { name: 'Bière 50cl', quantity: 120, status: '', seuil: 100 },
     ]);
 
     const handleAddProduct = () => {
@@ -24,7 +25,7 @@ const BarProductPage = () => {
                 description: "Veuillez sélectionner un produit et définir un seuil",
             });
         } else {
-            const newProduct = {name: selectedProduct, quantity: 0, status: '', seuil: productSeuil};
+            const newProduct = { name: selectedProduct, quantity: 0, status: '', seuil: productSeuil };
             setProductsBar([...productsBar, newProduct]);
             setShowModal(false);
             setSelectedProduct("");
@@ -42,45 +43,27 @@ const BarProductPage = () => {
             description: "Le produit a bien été supprimé",
             duration: 3000,
         });
-    }
-    const validateNewSeuil = (prodName: string) => {
-        const index = productsBar.findIndex((product) => product.name === prodName);
-        if (index !== -1) {
-            const newSeuil = productsBar[index].seuil;
-            if (newSeuil === undefined) {
-                toast.error("Erreur", {
-                    description: "Le seuil ne peut pas être vide",
-                });
-                return false;
-            } else if (newSeuil < 0) {
-                toast.error("Erreur", {
-                    description: "Le seuil ne peut pas être négatif",
-                });
-                return false;
-            }
-            return true;
-        }
-    }
+    };
+
     const handleSeuilChange = (index: number, newSeuil: number) => {
         const newProducts = productsBar.map((product, i) =>
             i === index ? { ...product, seuil: newSeuil } : product
         );
         setProductsBar(newProducts);
         const prodName = productsBar[index].name;
-        validateNewSeuil(prodName);
         toast.success("Succès", {
             description: `Le seuil pour ${prodName} a bien été modifié`,
-            duration:1500
+            duration: 1500
         });
     };
 
     return (
         <>
-            <HeaderBar barName={"Administration"}/>
+            <HeaderBar barName={"barName"} />
             <div className="p-4">
 
                 <div className={"m-3 flex justify-center"}>
-                    <h1 className={"border px-8 rounded pb-3 pt-3"}>Bar à vin VIP</h1>
+                    <h1 className={"border px-8 rounded pb-3 pt-3"}>{barName}</h1>
                 </div>
 
                 <div className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center bg-gray-400">
@@ -123,7 +106,7 @@ const BarProductPage = () => {
                             <button className="text-red-500 font-bold text-xl"
                                     onClick={() => handleDeleteProduct(index)}>×
                             </button>
-                            <div className="text-lg font-semibold text-white">
+                            <div className="text-sm font-semibold text-white md:text-lg">
                                 {product.name}
                             </div>
                         </div>
@@ -141,6 +124,8 @@ const BarProductPage = () => {
                         </div>
                     </div>
                 ))}
+
+                <Button><Link to={'/dashboard'}>Retour</Link></Button>
             </div>
         </>
     );

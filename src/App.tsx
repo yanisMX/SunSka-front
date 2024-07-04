@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage.tsx";
 import MagasinPage from "./pages/MagasinPage.tsx";
 import './fontawesome';
 import BarProductPage from "./pages/BarProductPage.tsx";
+import {Toaster} from "sonner";
 
 
 
@@ -18,8 +19,9 @@ function App() {
                 <Route path="/dashboard" element={<DashboardPage/>}/>
                 <Route path="/bar" element={<BarPages/>}/>
                 <Route path="/magasin" element={<MagasinPage/>}/>
-                <Route path="/barsettings" element={<BarProductPage/>}/>
+                <Route path="/barsettings/:barName" element={<BarProductPage/>}/>
             </Routes>
+            <Toaster position="bottom-right" />
         </ThemeProvider>
     );
 }

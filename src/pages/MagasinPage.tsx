@@ -1,36 +1,28 @@
 import HeaderAdmin from "../components/HeaderAdmin.tsx";
-import {useState} from "react";
 import BarView from "../components/BarView.tsx";
 import LivraisonView from "../components/LivraisonView.tsx";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs.tsx";
 
 const MagasinPage = () => {
-    const [activeTab, setActiveTab] = useState<string>('Bar');
-
-    return(
-    <div className="min-h-screen p-4">
-       <HeaderAdmin />
-        <div className="mt-4">
-            <div className="flex justify-center space-x-4">
-                <button
-                    className={`py-2 px-4 rounded-full ${activeTab === 'Bar' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                    onClick={() => setActiveTab('Bar')}
-                >
-                    Bar
-                </button>
-                <button
-                    className={`py-2 px-4 rounded-full ${activeTab === 'Livraison' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                    onClick={() => setActiveTab('Livraison')}
-                >
-                    Livraison
-                </button>
-            </div>
-
-            <div className="mt-4">
-                {activeTab === 'Bar' ? <BarView /> : <LivraisonView />}
+    return (
+        <div className="min-h-screen p-4">
+            <HeaderAdmin />
+            <div className="mt-4 flex justify-center">
+                <Tabs defaultValue="Bar" className="w-full max-w-2xl">
+                    <TabsList className="grid w-full grid-cols-2">
+                        <TabsTrigger value="Bar">Bar</TabsTrigger>
+                        <TabsTrigger value="Livraison">Livraison</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="Bar">
+                        <BarView />
+                    </TabsContent>
+                    <TabsContent value="Livraison">
+                        <LivraisonView />
+                    </TabsContent>
+                </Tabs>
             </div>
         </div>
-    </div>
-);
+    );
 };
 
 export default MagasinPage;
