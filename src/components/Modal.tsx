@@ -1,4 +1,6 @@
-export const Modal = ({ show, onClose, children }) => {
+
+
+export const Modal = ({ show, onClose, children } : {show: boolean, onClose : () => void, children : React.ReactNode;}) => {
     if (!show) {
         return null;
     }

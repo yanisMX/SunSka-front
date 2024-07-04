@@ -6,7 +6,7 @@ import {ThemeProvider} from './components/theme-provider';
 import DashboardPage from "./pages/DashboardPage.tsx";
 import MagasinPage from "./pages/MagasinPage.tsx";
 import './fontawesome';
-import BarSettingsPage from "./pages/BarSettingsPage.tsx";
+import BarProductPage from "./pages/BarProductPage.tsx";
 
 
 
@@ -18,7 +18,7 @@ function App() {
                 <Route path="/dashboard" element={<DashboardPage/>}/>
                 <Route path="/bar" element={<BarPages/>}/>
                 <Route path="/magasin" element={<MagasinPage/>}/>
-                <Route path="/barsettings" element={<BarSettingsPage/>}/>
+                <Route path="/barsettings" element={<BarProductPage/>}/>
             </Routes>
         </ThemeProvider>
     );

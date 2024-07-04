@@ -3,7 +3,7 @@ import Modal from "./Modal.tsx";
 import {Input} from "./ui/input.tsx";
 import {useState} from "react";
 import {toast} from "sonner";
-import {Badge} from "./ui/badge.tsx";
+
 
 const ProductSettingsView = () => {
     const [showModal, setShowModal] = useState<boolean>(false);

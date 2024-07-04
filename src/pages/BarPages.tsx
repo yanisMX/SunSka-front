@@ -32,8 +32,11 @@ const BarPages = () => {
     return (
         <>
             <HeaderBar barName={"test"} />
+
             <div className="text-center">
                 <p className="text-3xl mb-4">Bar 1<i className="fa-solid fa-truck"></i></p>
+
+                <p>SEARCHBAR</p>
                 <div className="mb-4">
                     {products.map((product, index) => (
                         <ProductCard key={index} {...product} />

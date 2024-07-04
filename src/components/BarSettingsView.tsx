@@ -39,9 +39,7 @@ const BarSettingsView = () => {
             }
         };
 
-        const updateBarName = (id: number, newName: string) => {
 
-        }
 
 return (
     <div className="p-4">

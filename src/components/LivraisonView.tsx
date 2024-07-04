@@ -1,6 +1,3 @@
-import {Button} from "./ui/button.tsx";
-
-
 const livraisons = [
     { name: 'Jack Daniels 75cl', bar: 'Bar 1', status: 'red' },
     { name: 'Cristalline 1L', bar: 'Bar 3', status: 'red' },
