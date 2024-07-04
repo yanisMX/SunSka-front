@@ -1,23 +1,22 @@
 import { useState, useEffect } from 'react';
-import HeaderAdmin from '../components/HeaderAdmin';
 import ProductCard from '../components/ProductCard';
 import { Alert, AlertTitle, AlertDescription } from '../components/ui/alert';
 import { Terminal } from 'lucide-react';
-import HeaderBar from "../components/HeaderBar.tsx"; // Assurez-vous que cet import est correct
+import HeaderBar from "../components/HeaderBar.tsx";
 
-const products = [
-    { name: 'Ricard 1L', quantity: 10, status: 'Livraison en cours' },
-    { name: 'Coca-Cola 1L', quantity: 100, status: 'Livraison validée' },
-    { name: 'Jack Fire 70cl', quantity: 50, status: 'Statut OK' },
-    { name: 'Bière 50cl', quantity: 200, status: 'Notification envoyée' },
+
+const initialProducts = [
+    { name: 'Ricard 1L', quantity: 10, status: '', seuil: 5 },
+    { name: 'Coca-Cola 1L', quantity: 100, status: '', seuil: 50 },
+    { name: 'Jack 70cl', quantity: 50, status: '', seuil: 20 },
+    { name: 'Bière 50cl', quantity: 120 ,status:'', seuil: 100},
 ];
+
 
 const BarPages = () => {
     const [alerte, setAlerte] = useState(false);
-
-    const handleClick = () => {
-        setAlerte(true);
-    };
+    const [searchTerm, setSearchTerm] = useState('');
+    const [products, setProducts] = useState(initialProducts);
 
     useEffect(() => {
         if (alerte) {
@@ -29,6 +28,15 @@ const BarPages = () => {
         }
     }, [alerte]);
 
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <>
             <HeaderBar barName={"test"} />
@@ -36,15 +44,22 @@ const BarPages = () => {
             <div className="text-center">
                 <p className="text-3xl mb-4">Bar 1<i className="fa-solid fa-truck"></i></p>
 
-                <p>SEARCHBAR</p>
-                <div className="mb-4">
-                    {products.map((product, index) => (
+                <div className="mb-4 mx-8">
+                    <input
+                        type="text"
+                        className="input input-bordered w-full max-w-md mx-auto mb-4 bg-gray-200 rounded-lg p-2"
+                        placeholder="Rechercher un produit"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                </div>
+
+                <div className="mb-4 mx-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {filteredProducts.map((product, index) => (
                         <ProductCard key={index} {...product} />
                     ))}
                 </div>
-                <button onClick={handleClick} className="btn btn-secondary">
-                    activer l'alerte
-                </button>
+
                 {alerte && (
                     <div className="fixed bottom-4 right-4 z-50">
                         <Alert>
