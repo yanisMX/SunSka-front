@@ -92,27 +92,7 @@ export function VentesView() {
                         <SelectItem value="productDesc">Produits vendus descendants</SelectItem>
                     </SelectContent>
                 </Select>
-                <Input
-                    type="text"
-                    placeholder="Filtrer par date"
-                    value={selectedDate}
-                    onChange={(e) => setSelectedDate(e.target.value)}
-                    className="w-32"
-                />
-                <Input
-                    type="text"
-                    placeholder="Filtrer par bar"
-                    value={selectedBar}
-                    onChange={(e) => setSelectedBar(e.target.value)}
-                    className="w-32"
-                />
-                <Input
-                    type="text"
-                    placeholder="Filtrer par produit"
-                    value={selectedProduct}
-                    onChange={(e) => setSelectedProduct(e.target.value)}
-                    className="w-32"
-                />
+
             </div>
             <Table>
                 <TableHeader>
