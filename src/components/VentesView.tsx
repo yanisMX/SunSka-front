@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "./ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { toast } from "sonner";
-import {Input} from "./ui/input.tsx";
 
 const ventes = [
     {
@@ -49,8 +48,8 @@ const ventes = [
 
 export function VentesView() {
     const [sortCriteria, setSortCriteria] = useState("dateAsc");
-    const [selectedDate, setSelectedDate] = useState("");
-    const [selectedBar, setSelectedBar] = useState("");
+    const [selectedDate] = useState("");
+    const [selectedBar] = useState("");
     const [selectedProduct, setSelectedProduct] = useState("");
 
     const handleSortChange = (value: string) => {
