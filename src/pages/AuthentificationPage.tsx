@@ -1,7 +1,7 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "../components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "../components/ui/button";
 import {
     Form,
     FormControl,
@@ -10,11 +10,13 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "../components/ui/form"
-import { Input } from "../components/ui/input"
-import Header from "../components/Header.tsx"
-import {useNavigate} from "react-router-dom";
-import {useAuth} from "../AuthContext.tsx";
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
+import Header from "../components/Header.tsx";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext.tsx";
+import Modal from "../components/Modal.tsx"; // Assuming you have a Modal component
+import { useState } from "react";
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -23,7 +25,7 @@ const formSchema = z.object({
     password: z.string().min(6, {
         message: "Le mot de passe doit comporter au moins 6 caractères.",
     }),
-})
+});
 
 export default function AuthentificationPage() {
     const form = useForm({
@@ -32,16 +34,22 @@ export default function AuthentificationPage() {
             username: "",
             password: "",
         },
-    })
+    });
 
     const { login } = useAuth();
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
-    const onSubmit = (data : {username : string, password : string}) => {
-        console.log(data)
+    const onSubmit = (data: { username: string; password: string }) => {
+        console.log(data);
         login();
-        navigate('/dashboard');
-    }
+        setShowModal(true); // Show modal on successful login
+    };
+
+    const handleNavigate = (path: string) => {
+        setShowModal(false);
+        navigate(path);
+    };
 
     return (
         <>
@@ -91,6 +99,20 @@ export default function AuthentificationPage() {
                     </Form>
                 </div>
             </div>
+
+            <Modal show={showModal} onClose={() => setShowModal(false)}>
+                <div className="p-4">
+                    <h2 className="text-xl font-bold mb-4 text-center">Choisissez une destination</h2>
+                    <div className="flex flex-col justify-center mb-4">
+                        <Button variant="outline" onClick={() => handleNavigate('/dashboard')}>
+                            Aller au Dashboard
+                        </Button>
+                        <Button variant="outline" onClick={() => handleNavigate('/magasin')}>
+                            Aller au Magasin
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
         </>
-    )
+    );
 }

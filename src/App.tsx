@@ -30,9 +30,9 @@ function App() {
                     <Route
                         path="/bar"
                         element={
-                            <RequireAuth>
+
                                 <BarPages />
-                            </RequireAuth>
+
                         }
                     />
                     <Route
