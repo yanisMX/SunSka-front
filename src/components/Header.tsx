@@ -13,18 +13,19 @@ import SunSkaLogo from "../../public/Sunska_Festival_Logo.png";
 const Header = () => {
   const { setTheme } = useTheme();
   return (
-      <div className="navbar bg-base-100 mt-2 flex items-center justify-between px-4 mb-2">
+      <div className="navbar flex items-center justify-between px-4  py-3" style={{backgroundColor: '#32605E'}}>
         <div className="flex items-center">
           <Link to="/">
-            <img src={SunSkaLogo} alt="SunSka Festival Logo" className="h-12 mr-4" />
+            <img src={SunSkaLogo} alt="SunSka Festival Logo" className="h-12 mr-4"/>
           </Link>
         </div>
         <div className="flex-none">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"/>
+                <Moon
+                    className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
                 <span className="sr-only">Toggle theme</span>
               </Button>
             </DropdownMenuTrigger>

@@ -32,7 +32,7 @@ const ProductCard = ({ name, quantity, status: initialStatus, seuil }: { name: s
             setStatus('En cours')
         }
         else {
-            setStatus(undefined);
+            setStatus('Statut OK');
         }
     };
 
@@ -61,6 +61,9 @@ const ProductCard = ({ name, quantity, status: initialStatus, seuil }: { name: s
     switch (status) {
         case 'Notification envoyée':
             badgeClass = 'bg-gray-500 text-white';
+            break;
+        case 'Statut OK':
+            badgeClass = 'bg-green-500 text-white';
             break;
         default:
             badgeClass = 'bg-gray-300 text-gray-700';

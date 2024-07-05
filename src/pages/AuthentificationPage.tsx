@@ -41,7 +41,7 @@ export default function AuthentificationPage() {
             <Header />
             <div
                 className="flex justify-center items-center min-h-screen bg-cover bg-center"
-                style={{ backgroundImage: `url('/Sun_Ska_Festival 2024.jpg')` }}
+                style={{ backgroundImage: `url('/Sun_Ska_Festival_2024.jpg')` }}
             >
                 <div className="border p-12 shadow-lg rounded-md w-full max-w-md bg-white bg-opacity-80 backdrop-blur-sm">
                     <Form {...form}>
