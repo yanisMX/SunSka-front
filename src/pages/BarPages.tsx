@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Alert, AlertTitle, AlertDescription } from '../components/ui/alert';
 import { Terminal } from 'lucide-react';
-import HeaderBar from "../components/HeaderBar.tsx";
+import Header from "../components/Header.tsx";
 
 
 const initialProducts = [
@@ -39,7 +39,7 @@ const BarPages = () => {
 
     return (
         <>
-            <HeaderBar barName={"test"} />
+            <Header />
 
             <div className="text-center">
                 <p className="text-3xl mb-4">Bar 1<i className="fa-solid fa-truck"></i></p>

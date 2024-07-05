@@ -1,4 +1,4 @@
-import HeaderAdmin from "../components/HeaderAdmin.tsx";
+import Header from "../components/Header.tsx";
 import BarView from "../components/BarView.tsx";
 import LivraisonView from "../components/LivraisonView.tsx";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs.tsx";
@@ -7,7 +7,7 @@ import VentesView from "../components/VentesView.tsx";
 const MagasinPage = () => {
     return (
         <div className="min-h-screen p-4">
-            <HeaderAdmin />
+            <Header />
             <div className="mt-4 flex justify-center">
                 <Tabs defaultValue="Bar" className="w-full max-w-2xl">
                     <TabsList className="grid w-full grid-cols-3">

@@ -1,4 +1,4 @@
-import HeaderBar from "../components/HeaderBar.tsx";
+import Header from "../components/Header.tsx";
 import { Button } from "../components/ui/button.tsx";
 import Modal from "../components/Modal.tsx";
 import { Input } from "../components/ui/input.tsx";
@@ -59,7 +59,7 @@ const BarProductPage = () => {
 
     return (
         <>
-            <HeaderBar barName={"barName"} />
+            <Header />
             <div className="p-4">
 
                 <div className={"m-3 flex justify-center"}>
