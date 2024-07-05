@@ -6,10 +6,19 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 const DashboardPage = () => {
     return (
-        <div className="min-h-screen p-4">
-            <Header />
-            <div className="mt-4 flex justify-center">
-                <Tabs defaultValue="Bar" className="w-full max-w-2xl">
+        <>
+        <Header />
+        <div
+            className="min-h-screen p-4 bg-cover bg-center flex justify-center items-start pt-16"
+            style={{
+                backgroundImage: `url('/Sun_Ska_Festival_2024.jpg')`,
+                backgroundColor: 'rgba(50, 96, 94, 0.8)',
+                backgroundBlendMode: 'overlay',
+            }}
+        >
+
+            <div className="mt-4 flex justify-center w-full">
+                <Tabs defaultValue="Bar" className="w-full max-w-2xl bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg p-4">
                     <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger value="Bar">Bar</TabsTrigger>
                         <TabsTrigger value="Produits">Produits</TabsTrigger>
@@ -23,7 +32,7 @@ const DashboardPage = () => {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <BarSettingsView  />
+                                <BarSettingsView />
                             </CardContent>
                         </Card>
                     </TabsContent>
@@ -43,6 +52,8 @@ const DashboardPage = () => {
                 </Tabs>
             </div>
         </div>
+
+        </>
     );
 };
 

@@ -6,8 +6,16 @@ import VentesView from "../components/VentesView.tsx";
 
 const MagasinPage = () => {
     return (
-        <div className="min-h-screen p-4">
+        <>
             <Header />
+            <div
+                className="min-h-screen p-4 bg-cover bg-center flex justify-center items-start pt-16"
+                style={{
+                    backgroundImage: `url('/Sun_Ska_Festival_2024.jpg')`,
+                    backgroundColor: 'rgba(50, 96, 94, 0.8)',
+                    backgroundBlendMode: 'overlay',
+                }}
+            >
             <div className="mt-4 flex justify-center">
                 <Tabs defaultValue="Bar" className="w-full max-w-2xl">
                     <TabsList className="grid w-full grid-cols-3">
@@ -27,6 +35,7 @@ const MagasinPage = () => {
                 </Tabs>
             </div>
         </div>
+        </>
     );
 };
 

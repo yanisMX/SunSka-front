@@ -13,6 +13,8 @@ import {
 } from "../components/ui/form"
 import { Input } from "../components/ui/input"
 import Header from "../components/Header.tsx"
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../AuthContext.tsx";
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -32,8 +34,13 @@ export default function AuthentificationPage() {
         },
     })
 
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const onSubmit = (data : {username : string, password : string}) => {
         console.log(data)
+        login();
+        navigate('/dashboard');
     }
 
     return (

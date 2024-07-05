@@ -18,7 +18,7 @@ const ProductCard = ({ name, quantity, status: initialStatus, seuil }: { name: s
         } else if (count === seuil) {
             setStatus('Notification envoyée');
         } else {
-            setStatus(undefined);
+            setStatus('Statut OK');
         }
     }, [count, seuil]);
 
@@ -60,10 +60,13 @@ const ProductCard = ({ name, quantity, status: initialStatus, seuil }: { name: s
 
     switch (status) {
         case 'Notification envoyée':
-            badgeClass = 'bg-gray-500 text-white';
+            badgeClass = 'bg-orange-500 text-white';
             break;
         case 'Statut OK':
             badgeClass = 'bg-green-500 text-white';
+            break;
+        case 'en cours':
+            badgeClass = 'bg-blue-500 text-white';
             break;
         default:
             badgeClass = 'bg-gray-300 text-gray-700';
