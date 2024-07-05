@@ -1,22 +1,22 @@
 import Header from "../components/Header.tsx";
-import { Button } from "../components/ui/button.tsx";
+import {Button} from "../components/ui/button.tsx";
 import Modal from "../components/Modal.tsx";
-import { Input } from "../components/ui/input.tsx";
-import { useState } from "react";
-import { toast } from "sonner";
-import { Select, SelectTrigger, SelectContent, SelectItem } from "../components/ui/select";
-import { Link, useParams } from "react-router-dom";
+import {Input} from "../components/ui/input.tsx";
+import {useState} from "react";
+import {toast} from "sonner";
+import {Select, SelectTrigger, SelectContent, SelectItem} from "../components/ui/select";
+import {Link, useParams} from "react-router-dom";
 
 const BarProductPage = () => {
-    const { barName } = useParams<{ barName: string }>();
+    const {barName} = useParams<{ barName: string }>();
     const [showModal, setShowModal] = useState<boolean>(false);
     const [selectedProduct, setSelectedProduct] = useState<string>("");
     const [productSeuil, setProductSeuil] = useState<number | undefined>(undefined);
     const [productsBar, setProductsBar] = useState([
-        { name: 'Ricard 1L', quantity: 10, status: '', seuil: 5 },
-        { name: 'Coca-Cola 1L', quantity: 100, status: '', seuil: 50 },
-        { name: 'Jack Fire 70cl', quantity: 50, status: '', seuil: 20 },
-        { name: 'Bière 50cl', quantity: 120, status: '', seuil: 100 },
+        {name: 'Ricard 1L', quantity: 10, status: '', seuil: 5},
+        {name: 'Coca-Cola 1L', quantity: 100, status: '', seuil: 50},
+        {name: 'Jack Fire 70cl', quantity: 50, status: '', seuil: 20},
+        {name: 'Bière 50cl', quantity: 120, status: '', seuil: 100},
     ]);
 
     const handleAddProduct = () => {
@@ -25,7 +25,7 @@ const BarProductPage = () => {
                 description: "Veuillez sélectionner un produit et définir un seuil",
             });
         } else {
-            const newProduct = { name: selectedProduct, quantity: 0, status: '', seuil: productSeuil };
+            const newProduct = {name: selectedProduct, quantity: 0, status: '', seuil: productSeuil};
             setProductsBar([...productsBar, newProduct]);
             setShowModal(false);
             setSelectedProduct("");
@@ -47,7 +47,7 @@ const BarProductPage = () => {
 
     const handleSeuilChange = (index: number, newSeuil: number) => {
         const newProducts = productsBar.map((product, i) =>
-            i === index ? { ...product, seuil: newSeuil } : product
+            i === index ? {...product, seuil: newSeuil} : product
         );
         setProductsBar(newProducts);
         const prodName = productsBar[index].name;
@@ -57,9 +57,15 @@ const BarProductPage = () => {
         });
     };
 
+    const handleSave = () => {
+        toast.success("Succès", {
+            description: "Les modifications ont bien été enregistrées",
+        });
+    }
+
     return (
         <>
-            <Header />
+            <Header/>
             <div
                 className="min-h-screen bg-cover bg-center flex justify-center items-start pt-16"
                 style={{
@@ -68,16 +74,18 @@ const BarProductPage = () => {
                     backgroundBlendMode: 'overlay',
                 }}
             >
-                <div className="w-full max-w-4xl p-6 bg-opacity-80 backdrop-blur-sm rounded-lg shadow-lg mt-6">
+                <div className="w-full max-w-4xl p-6 bg-opacity-80 backdrop-blur-sm rounded-lg mt-6">
                     <div className="text-center">
                         <div className="m-3 flex justify-center">
-                            <h1 className="border px-8 rounded pb-3 pt-3 text-xl text-white" style={{ backgroundColor: '#32605e' }}>{barName}</h1>
+                            <h1 className="border px-8 rounded pb-3 pt-3 text-xl text-white"
+                                style={{backgroundColor: '#32605e'}}>{barName}</h1>
                         </div>
 
-                        <div className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center bg-gray-400">
+                        <div className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center bg-white ">
                             <p className="text-center">Associer un produit</p>
                             <div className="flex items-center space-x-4">
-                                <Button variant="secondary" onClick={() => setShowModal(true)}>+</Button>
+                                <Button style={{backgroundColor: '#32605E'}}
+                                        onClick={() => setShowModal(true)}>+</Button>
                             </div>
                         </div>
 
@@ -100,37 +108,43 @@ const BarProductPage = () => {
                                     type="number"
                                     value={productSeuil}
                                     onChange={(e) => setProductSeuil(Number(e.target.value))}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    className="mt-1 block w-full rounded-md border-gray-300 bg-white focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
                             </div>
                             <div className="flex justify-center">
-                                <Button variant="default" onClick={handleAddProduct}>Ajouter</Button>
+                                <Button style={{backgroundColor: '#32605e'}} onClick={handleAddProduct} >Ajouter</Button>
                             </div>
                         </Modal>
 
                         {productsBar.map((product, index) => (
                             <div key={index} className="p-4 mb-4 flex justify-between">
-                                <div className="flex items-center space-x-4 rounded bg-black p-2">
-                                    <button className="text-red-500 font-bold text-xl" onClick={() => handleDeleteProduct(index)}>×</button>
+                                <div className="flex items-center space-x-4 rounded  p-2"
+                                     style={{backgroundColor: '#32605E'}}>
+                                    <button className="text-red-500 font-bold text-xl"
+                                            onClick={() => handleDeleteProduct(index)}>×
+                                    </button>
                                     <div className="text-sm font-semibold text-white md:text-lg">
                                         {product.name}
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-4">
                                     <div className="text-lg flex items-center">
-                                        <span className="mr-2">Seuil d'alerte :</span>
+                                        <span className="mr-2 text-white">Seuil d'alerte :</span>
                                         <Input
                                             type="number"
                                             value={product.seuil}
                                             onChange={(e) => handleSeuilChange(index, Number(e.target.value))}
-                                            className="w-16 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                            className="w-16 rounded-md text-white shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                            style={{backgroundColor: '#32605e'}}
                                         />
                                     </div>
                                 </div>
                             </div>
                         ))}
-
-                        <Button><Link to={'/dashboard'}>Retour</Link></Button>
+                        <div className={"flex justify-between mt-16"}>
+                            <Button style={{backgroundColor: '#32605e'}}><Link to={'/dashboard'}>Retour</Link></Button>
+                            <Button style={{backgroundColor: '#32605e'}} onClick={() => handleSave()}>Save</Button>
+                        </div>
                     </div>
                 </div>
             </div>

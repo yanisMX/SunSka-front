@@ -80,7 +80,7 @@ export function VentesView() {
     return (
         <div>
             <div className="flex justify-center space-x-4 py-4">
-                <Select onValueChange={handleSortChange} defaultValue={sortCriteria}>
+                <Select onValueChange={handleSortChange} defaultValue={sortCriteria} style={{backgroundColor: '#32605E'}}>
                     <SelectTrigger>
                         <SelectValue placeholder="Trier par" />
                     </SelectTrigger>

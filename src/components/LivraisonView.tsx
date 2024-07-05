@@ -69,10 +69,11 @@ const LivraisonView = () => {
                             <span className="block text-gray-600">{livraison.bar}</span>
                         </div>
                         <div className="flex flex-col items-center justify-center">
-                            <span className={`${getStatusColor(livraison.status)} text-white rounded-full px-2 py-1 text-sm`}>
+                            <span className={`${getStatusColor(livraison.status)} text-white rounded-full px-2  text-sm`}>
                                 {getStatusText(livraison.status)}
                             </span>
-                            <Button variant="outline" onClick={() => handleClick(livraison)}>Livrer</Button>
+                            <span className={"py-3"}></span>
+                            <Button style={{backgroundColor: '#32605E'}} onClick={() => handleClick(livraison)}>Livrer</Button>
                         </div>
                     </div>
                     <div className="mt-2">
@@ -96,7 +97,7 @@ const LivraisonView = () => {
                         />
                     </div>
                     <div className="flex justify-center">
-                        <Button variant="default" onClick={handleValidation}>Ajouter</Button>
+                        <Button style={{backgroundColor: '#32605E'}} onClick={handleValidation}>Ajouter</Button>
                     </div>
                 </div>
             </Modal>

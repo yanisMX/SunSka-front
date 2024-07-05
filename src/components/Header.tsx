@@ -1,49 +1,58 @@
-import { Moon, Sun } from "lucide-react";
-import { Button } from "./ui/button";
+import {Moon, Sun} from "lucide-react";
+import {Button} from "./ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { useTheme } from "./theme-provider";
-import { Link } from "react-router-dom";
+import {useTheme} from "./theme-provider";
+import {Link} from "react-router-dom";
 import SunSkaLogo from "../../public/Sunska_Festival_Logo.png";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
-  const { setTheme } = useTheme();
-  return (
-      <div className="navbar flex items-center justify-between px-4  py-3" style={{backgroundColor: '#32605E'}}>
-        <div className="flex items-center">
-          <Link to="/">
-            <img src={SunSkaLogo} alt="SunSka Festival Logo" className="h-12 mr-4"/>
-          </Link>
+    const {setTheme} = useTheme();
+    return (
+        <div className="navbar flex items-center justify-between px-4 py-3" style={{backgroundColor: '#32605E'}}>
+            <div className="flex items-center">
+                <Link to="/">
+                    <img src={SunSkaLogo} alt="SunSka Festival Logo" className="h-12 mr-4"/>
+                </Link>
+
+            </div>
+            <div className="flex items-center space-x-4">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="icon">
+                            <Sun
+                                className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"/>
+                            <Moon
+                                className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
+                            <span className="sr-only">Toggle theme</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => setTheme("light")}>
+                            Light
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTheme("dark")}>
+                            Dark
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTheme("system")}>
+                            System
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+                <Button variant="outline" size="icon">
+                    <Link to={"/"}>
+                        <FontAwesomeIcon icon={faRightFromBracket}/>
+                    </Link>
+                </Button>
+            </div>
         </div>
-        <div className="flex-none">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"/>
-                <Moon
-                    className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                Light
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                Dark
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-  );
+    );
 };
 
 export default Header;

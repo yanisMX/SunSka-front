@@ -21,15 +21,15 @@ const BarView = () => {
     return (
         <div className="p-4">
             <Modal show={showModal} onClose={() => setShowModal(false)}>
-                <div className="p-4" style={{ width: '400px' }}>
-                    <div className={"flex justify-between mb-3"}>
-                        <h2 className="text-xl font-semibold mb-4">{selectedBar?.name}</h2>
-                        <Button>Forcer la livraison</Button>
+                <div className="p-6 bg-white rounded-lg shadow-lg" style={{ maxWidth: '500px' }}>
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-xl font-semibold">{selectedBar?.name}</h2>
+                        <Button style={{backgroundColor: '#32605E'}}>Forcer la livraison</Button>
                     </div>
 
                     {selectedBar?.products.map((product, index) => (
-                        <div key={index} className="mb-2 p-2 border rounded">
-                            <div className="flex justify-between">
+                        <div key={index} className="mb-4 p-4 border rounded-lg">
+                            <div className="flex justify-between mb-2">
                                 <span className="font-semibold">{product.name}</span>
                                 <span>Stock: {product.stock}</span>
                             </div>
@@ -37,16 +37,16 @@ const BarView = () => {
                                 <span>Seuil d'alerte:</span>
                                 <span>{product.seuil}</span>
                             </div>
-
                         </div>
                     ))}
                 </div>
             </Modal>
+
             {bars.map((bar, index) => (
                 <div key={index} className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
                     <span className="text-lg font-semibold">{bar.name}</span>
                     <div className="flex items-center space-x-4">
-                        <Button variant="secondary" onClick={() => handleClick(bar)}>Voir</Button>
+                        <Button style={{backgroundColor: '#32605E'}} onClick={() => handleClick(bar)}>Voir</Button>
                         <span className="bg-red-500 text-white rounded-full px-2 py-1 text-sm">{bar.notifications}</span>
                     </div>
                 </div>

@@ -94,7 +94,7 @@ export default function AuthentificationPage() {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit">Connexion</Button>
+                            <Button type="submit" style={{backgroundColor: '#32605E'}}>Connexion</Button>
                         </form>
                     </Form>
                 </div>
@@ -104,10 +104,11 @@ export default function AuthentificationPage() {
                 <div className="p-4">
                     <h2 className="text-xl font-bold mb-4 text-center">Choisissez une destination</h2>
                     <div className="flex flex-col justify-center mb-4">
-                        <Button variant="outline" onClick={() => handleNavigate('/dashboard')}>
+                        <Button style={{backgroundColor: '#32605E'}} onClick={() => handleNavigate('/dashboard')}>
                             Aller au Dashboard
                         </Button>
-                        <Button variant="outline" onClick={() => handleNavigate('/magasin')}>
+                        <span className={"py-3"}/>
+                        <Button style={{backgroundColor: '#32605E'}} onClick={() => handleNavigate('/magasin')}>
                             Aller au Magasin
                         </Button>
                     </div>

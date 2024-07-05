@@ -11,10 +11,10 @@ const BarSettingsView = () => {
     const [barName, setBarName] = useState<string>("");
     const [barProducts, setBarProducts] = useState<number>(0);
     const [bars, setBars] = useState([
-        { name: 'Bar 1', produits: 3, id: 1 },
-        { name: 'Bar 2', produits: 3, id: 2 },
-        { name: 'Bar 3', produits: 3, id: 3 },
-        { name: 'Bar 4', produits: 3, id: 4 },
+        { name: 'Bar 1', produits: 4, id: 1 },
+        { name: 'Bar 2', produits: 4, id: 2 },
+        { name: 'Bar 3', produits: 4, id: 3 },
+        { name: 'Bar 4', produits: 4, id: 4 },
     ]);
 
     const handleAddBar = () => {
@@ -43,7 +43,7 @@ const BarSettingsView = () => {
             <div className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
                 <p className="text-center">Ajouter un bar</p>
                 <div className="flex items-center space-x-4">
-                    <Button variant="secondary" onClick={() => setShowModal(true)}>+</Button>
+                    <Button style={{backgroundColor: '#32605E'}}onClick={() => setShowModal(true)}>+</Button>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@ const BarSettingsView = () => {
                     />
                 </div>
                 <div className="flex justify-end">
-                    <Button variant="secondary" onClick={handleAddBar}>Ajouter</Button>
+                    <Button style={{backgroundColor: '#32605E'}} onClick={handleAddBar}>Ajouter</Button>
                 </div>
             </Modal>
 
@@ -72,7 +72,7 @@ const BarSettingsView = () => {
                         </span>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <Link to={`/barsettings/${bar.name}`}><Button variant="secondary">Modifier</Button></Link>
+                        <Link to={`/barsettings/${bar.name}`}><Button style={{backgroundColor: '#32605E'}}>Modifier</Button></Link>
                     </div>
                 </div>
             ))}

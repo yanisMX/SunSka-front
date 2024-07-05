@@ -80,9 +80,9 @@ const ProductCard = ({ name, quantity, status: initialStatus, seuil }: { name: s
                     <CardTitle>{name}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-center items-center">
-                    <Button variant="outline" onClick={decrement}>-</Button>
+                    <Button style={{backgroundColor: '#32605e'}} onClick={decrement}>-</Button>
                     <p className="mx-3">{count}</p>
-                    <Button variant="outline" onClick={increment}>+</Button>
+                    <Button style={{backgroundColor: '#32605e'}} onClick={increment}>+</Button>
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-4">
                     <Badge variant={"outline"} className={"mb-4"}>Seuil : {seuil}</Badge>

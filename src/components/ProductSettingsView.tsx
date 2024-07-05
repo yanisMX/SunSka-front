@@ -52,7 +52,7 @@ const ProductSettingsView = () => {
             <div className="p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
                 <p className="text-center">Ajouter un produit</p>
                 <div className="flex items-center space-x-4">
-                    <Button variant="secondary" onClick={() => setShowModal(true)}>+</Button>
+                    <Button style={{backgroundColor: '#32605E'}} onClick={() => setShowModal(true)}>+</Button>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@ const ProductSettingsView = () => {
                     />
                 </div>
                 <div className="flex justify-end">
-                    <Button variant="secondary" onClick={handleAddBar}>Ajouter</Button>
+                    <Button style={{backgroundColor: '#32605E'}} onClick={handleAddBar}>Ajouter</Button>
                 </div>
             </Modal>
 
@@ -79,7 +79,7 @@ const ProductSettingsView = () => {
 
                     </div>
                     <div className="flex items-center space-x-4">
-                        <Button variant="secondary" onClick={() => handleDelete(product.id)}>Supprimer</Button>
+                        <Button style={{backgroundColor: '#32605E'}} onClick={() => handleDelete(product.id)}>Supprimer</Button>
                     </div>
                 </div>
             ))}
